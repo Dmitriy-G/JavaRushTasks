@@ -20,7 +20,29 @@ public class Solution implements Action {
         public void someAction() {
             //!!!!! All changes have to be here
             //!!!!! Все изменения должны быть только тут
-        }
+
+            if (param>0){
+                for (; param >= 1; param--)
+                {
+                    System.out.println(param);
+                }
+                new FirstClass() {
+                    @Override
+                    public Action getDependantAction()
+                    {
+                        return new Action()
+                        {
+                            @Override
+                            public void someAction()
+                            {
+                            }
+                        };
+                    }
+                }.someAction();
+            }
+                new SecondClass().someAction();
+                System.out.println(SecondClass.SPECIFIC_ACTION_FOR_ANONYMOUS_SECOND_CLASS_PARAM.replaceAll("\n", "") + param);
+            }
     };
 
 

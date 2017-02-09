@@ -1,5 +1,6 @@
 package com.javarush.test.level27.lesson06.task02;
 
+
 /* Определяем порядок захвата монитора. Сложная.
 Реализуйте логику метода isNormalLockOrder, который должен определять:
 соответствует ли порядок synchronized блоков в методе someMethodWithSynchronizedBlocks - порядку
@@ -29,7 +30,7 @@ public class Solution {
 
     public static boolean isNormalLockOrder(final Solution solution, final Object o1, final Object o2) throws Exception {
         //do something here
-        return false;
+        return o1.hashCode()>o2.hashCode();
     }
 
     public static void main(String[] args) throws Exception {
@@ -42,6 +43,7 @@ public class Solution {
             public void run() {
                 try {
                     isNormalLockOrder(solution, o1, o2); //expected boolean b
+                    System.out.println(isNormalLockOrder(solution, o1, o2));
                 } catch (Exception ignored) {
                 }
             }
@@ -52,6 +54,7 @@ public class Solution {
             public void run() {
                 try {
                     isNormalLockOrder(solution, o2, o1); //expected boolean !b
+                    System.out.println(isNormalLockOrder(solution, o1, o2));
                 } catch (Exception ignored) {
                 }
             }

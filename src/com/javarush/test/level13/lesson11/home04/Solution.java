@@ -17,15 +17,15 @@ public class Solution
         OutputStream f1 = new FileOutputStream(reader.readLine());
         ArrayList<String> list=new ArrayList<String>();
         while (true){
-            String S=reader.readLine();
-            if (S.contains("exit")){
-                list.add(S);
+            String s=reader.readLine();
+            if (s.contains("exit")){
+                list.add(s);
                 list.add(" ");
                 break;
             }
             else
             {
-                list.add(S);
+                list.add(s);
                 list.add(" ");
             }
         }

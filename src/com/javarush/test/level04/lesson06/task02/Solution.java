@@ -4,11 +4,10 @@ package com.javarush.test.level04.lesson06.task02;
 Ввести с клавиатуры четыре числа, и вывести максимальное из них.
 */
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.sql.SQLOutput;
+
 
 public class Solution
 {

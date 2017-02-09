@@ -10,15 +10,22 @@ public class Apartment {
     }
 
     public synchronized String getLocation() {
+
         return location;
     }
 
-    public synchronized void setLocation(String location) {
-        this.location = location;
+    public void setLocation(String location) {
+        synchronized (this)
+        {
+            this.location = location;
+        }
     }
 
-    public synchronized void revalidate(boolean isEmpty) {
-        if (isEmpty)
-            realEstate.up(this);
+    public void revalidate(boolean isEmpty) {
+        synchronized (this)
+        {
+            if (isEmpty)
+                realEstate.up(this);
+        }
     }
 }

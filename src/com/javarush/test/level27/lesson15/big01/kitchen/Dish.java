@@ -7,15 +7,29 @@ import java.util.Arrays;
  */
 public enum Dish
 {
-    Fish,
-    Steak,
-    Soup,
-    Juice,
-    Water;
+    Fish(25),
+    Steak(30),
+    Soup(15),
+    Juice(5),
+    Water(3);
+
+    Dish(int duration)
+    {
+        this.duration = duration;
+    }
+
+    private int duration;
+
+    public int getDuration()
+    {
+        return duration;
+    }
 
     public static String allDishesToString()
     {
-        String resultString = Arrays.toString(Dish.values());
-        return resultString.substring(resultString.indexOf("[")+1,resultString.lastIndexOf("]"));
+        if (values().length == 0) {
+            return "";
+        }
+        return Arrays.toString(values()).substring(1, Arrays.toString(values()).length() - 1);
     }
 }

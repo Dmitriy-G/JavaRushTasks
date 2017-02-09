@@ -1,12 +1,11 @@
 package com.javarush.test.level22.lesson09.task03;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.Collections;
 
 /* Составить цепочку слов
 В методе main считайте с консоли имя файла, который содержит слова, разделенные пробелом.
@@ -23,34 +22,61 @@ import java.util.Scanner;
 Результат:
 Амстердам Мельбурн Нью-Йорк Киев Вена
 */
-public class Solution {
+public class Solution
+{
     public static void main(String[] args) throws IOException
     {
-        String line = "";
-        ArrayList<String> list = new ArrayList<>();
-        try (Scanner scanner = new Scanner(System.in); BufferedReader reader = new BufferedReader(new FileReader(scanner.nextLine()))) {
-            while ((line = reader.readLine()) != null) {
-                list.addAll(Arrays.asList(line.split(" ")));
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        }
         //...
-        StringBuilder result = getLine();
+        BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+        String fileName=reader.readLine();
+        reader.close();
+
+        BufferedReader fileReader=new BufferedReader(new FileReader(fileName));
+        String s;
+        String []arr=null;
+        while (fileReader.ready()){
+            s=fileReader.readLine();
+            s=s.replaceAll("\uFEFF","");
+            arr=s.split(" ");
+        }
+        fileReader.close();
+        StringBuilder result = getLine(arr);
         System.out.println(result.toString());
     }
 
+    public static StringBuilder getLine(String... words)
+    {
+        StringBuilder builder = new StringBuilder();
+        if (words.length==0){
+            return builder;
+        }
+        ArrayList<String> list = new ArrayList<>();
+        Collections.addAll(list, words);
 
-    public static StringBuilder getLine(String... words) {
-        if (words == null || words.length == 0)
-            return new StringBuilder();
-        if (words[0].equals(""))
-            return new StringBuilder(words[0]);
-
-
-          return null;
+        while (list.size() > 0)
+        {
+            Collections.shuffle(list);
+            for (int i=0; i<list.size(); i++){
+                if (i<list.size()-1)
+                {
+                    String letter1= list.get(i).toLowerCase();
+                    String letter2=list.get(i+1).toLowerCase();
+                    if (letter1.charAt(letter1.length()-1)!=letter2.charAt(0))
+                    {
+                        break;
+                    }
+                }else {
+                    for (int j=0; i<list.size(); j++){
+                        if (j<list.size())
+                        {
+                            builder.append(list.get(j)).append(" ");
+                        }else {
+                            list.removeAll(list);
+                        }
+                    }
+                }
+            }
+        }
+        return builder;
     }
 }

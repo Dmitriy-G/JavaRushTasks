@@ -22,7 +22,6 @@ public class Solution
 
             Thread.sleep(100);
         }
-
         System.out.println("Бум!");
     }
 }

@@ -37,10 +37,15 @@ public class Solution
     public static Map<String, Integer> countWords(ArrayList<String> list)
     {
         HashMap<String, Integer> result = new HashMap<String, Integer>();
-
-        //Напишите тут ваш код
-
-
+        for (String word:list){
+            try
+            {
+                result.put(word,result.get(word)+1);
+            }catch (Exception ignore){
+                result.put(word,1);
+            }
+        }
+        //напишите тут ваш код
         return result;
     }
 
